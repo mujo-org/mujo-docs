@@ -18,7 +18,7 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 - [ ] Record their answers in the ADR and decide
 
 ### 2. Name and domain (owner: both)
-- [ ] Register `mujo.chat` (Cloudflare, ~35.20 USD/yr as of 2026-11-17)
+- [x] Register `mujo.chat` (Cloudflare, ~35.20 USD/yr as of 2026-11-17)
 - [x] EUIPO search: "MUJO", classes 9 and 38
 - [x] DPMA search: "MUJO", classes 9 and 38
 - [x] Assess known conflicts: US mark (Mujo LLC, class 9), app "MUJO: Simple Bullet Journal"
