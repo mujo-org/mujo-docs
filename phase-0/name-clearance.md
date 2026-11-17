@@ -34,7 +34,7 @@ The DPMA hit list also shows the EUTMs and international registrations above; ol
 
 ## Known US conflicts
 
-- **MUJO, US reg. 7441095 (serial 98069477), Mujo LLC, class 9**: mobile app for music practice journaling. Not relevant in the EU, but a risk for a US launch or a US App Store listing under the same name.
+- **MUJO, US reg. 7441095 (serial 98069477), Mujo LLC, class 9**: mobile app for music practice journaling. Not relevant in the EU, but a risk for any US distribution under the same name, including the Play Store (Android MVP) and the App Store.
 - **App "MUJO: Simple Bullet Journal"** (iOS, Nori LLC): an app with the same name in the App Store. Store search results will mix with it; no registered mark found for it.
 
 ## Fallback names
@@ -48,5 +48,7 @@ Domains checked for availability at the Cloudflare registrar on 2026-11-17 (35.2
 
 ## Open points
 
-- Decide whether to file an EUTM for "MUJO" in classes 9, 38 and 42 once the name is final.
+- Decide whether to file an EUTM for "MUJO" in classes 9 and 38 once the name is final. Class 42 only after a professional check: "mujō" (EUTM 018859295) is already registered there, so a filing in 42 invites an opposition.
+- US: Mujo LLC's class 9 mark also affects the **Play Store**, which publishes to the US by default. Either exclude the US in the Play Console for the MVP or get advice before a US release.
+- Run a trademark search for the fallback names (Unsaid, Fume) before either is used.
 - Re-check the registers before the public launch; EUTM 019373310 shows new filings for the name are still appearing.

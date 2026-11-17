@@ -4,15 +4,19 @@ Derived from *Mujo: Konzept für einen Messenger ohne Nummer und Username* (Konz
 
 Team: **2 developers, no hiring planned**. The WP's 12–18 months for an Android MVP assumes 3–4 developers plus a part-time designer, so expect it to take longer with two. Re-estimate once spike S1 shows how much agent code changes, and keep the MVP scope tight.
 
+**All month numbers below are the WP's estimates for its 3–4-person team and are counted from project start.** They show order and overlap, not a commitment for two people. Replace them with our own estimate at the end of Phase 0.
+
+**Roles.** Every task is done by one of the two developers unless it is marked *external*. External work (design, legal advice, audit) is bought in per task and needs the funding decision first.
+
 ---
 
 ## 0. Starting point
 
-| Repo | Today | Role in Mujo |
+| Repo | State at fork (2026-11) | Role in Mujo |
 |---|---|---|
-| `mujo-mq` | Unmodified fork of `simplexmq` 7.1.0.18 (SMP server, agent, XFTP, ntf-server, xftp-web) | Protocol core: replication, circuits, directory client, wake-up tickets, node binary |
+| `mujo-mq` | Fork of `simplexmq` 7.1.0.18 (SMP server, agent, XFTP, ntf-server, xftp-web) | Protocol core: replication, circuits, directory client, wake-up tickets, node binary |
 | `mujo-chat` | Fork of `simplex-chat` 7.1.4.0 (Haskell core, Kotlin multiplatform Android/desktop, iOS) | Client: read-once storage, key hierarchy, UI redesign, branding |
-| `mujo-docs` | Empty | White paper, protocol specs, threat model, this roadmap |
+| `mujo-docs` | Phase 0 docs (this roadmap, tracker, baseline) | White paper, protocol specs, threat model, this roadmap |
 | `mujo-infra` | Empty | Nix/NixOS configs for nodes, directory signing, push services |
 | `mujo-web` | Empty | Static landing page for `https://mujo.chat/i#…` invitation links |
 
@@ -40,15 +44,14 @@ The WP conclusion asks for a 2-month prototype before committing. Its purpose is
    - **Key-hierarchy spike:** on 3 Android devices (one with StrongBox, one TEE-only, one low-end), time EEK create/wrap/delete. Target: under 300 ms tap-to-display (§7.1).
    - **Cover-traffic spike:** measure the battery and data cost of the Table 5 polling schedule on real devices.
 5. **Team skills** (no hiring; WP §11 calls Haskell a critical-path skill)
-   - Both developers build Haskell competence in the existing codebase: each lands one small fix per repo, and S1 is done in pairs where possible.
+   - Both developers build Haskell competence in the existing codebase: each lands one small upstream-style fix per repo, and S1 is done in pairs where possible.
    - Keep new protocol code small and well specified, and prefer upstream contributions where SimpleX accepts them (see ADR 0001).
-   - Ramp-up plan: each developer lands one small upstream-style fix in each repo.
 6. **Governance and admin**
    - Write the contributor licence policy (AGPL inherited; own code stays open).
-   - Draft upstream-sync policy: track upstream tags, rebase cadence (e.g. monthly), fork-diff document.
+   - Draft upstream-sync policy: track upstream tags, merge cadence (at least monthly), fork-diff document.
    - Start the funding decision (donations / foundation / paid extras). It doesn't block development, but it blocks operator recruiting.
 
-**Exit criteria:** fork decision signed off; name cleared or replaced; CI builds both repos; spike numbers documented; both developers have landed a change in each repo.
+**Exit criteria:** fork decision signed off; name cleared or replaced; CI builds both repos, including the `mujo-chat` Android APK; spike numbers documented; both developers have landed a change in each repo; month estimates redone for two developers.
 
 ---
 
@@ -56,14 +59,16 @@ The WP conclusion asks for a 2-month prototype before committing. Its purpose is
 
 WP §11.2 step 1. Konzept phase 1 (months 1–2) is folded in here.
 
+Overlaps with the end of Phase 0 on purpose: spec writing (1.4) can start in month 1. Fork hygiene, branding and infrastructure spend (1.1–1.3) wait for the fork decision (M0).
+
 ### 1.1 Fork hygiene
-- Rename packages, binaries and app IDs (`chat.simplex.app` → own ID). Keep upstream module structure so rebases stay cheap.
+- Rename packages, binaries and app IDs (`chat.simplex.app` → own ID). Keep upstream module structure so upstream merges stay cheap.
 - Strip or disable SimpleX-specific services that Mujo doesn't ship (directory/broadcast/support bots, badge service), behind build flags rather than deletions where possible.
 - Replace preset servers with Mujo servers. Remove SimpleX operator presets.
 - Keep `NOTICE.md` and derivative notices accurate.
 
 ### 1.2 Branding
-- App name, icon, colours, store listing drafts (designer).
+- App name, icon, colours, store listing drafts (*external*: designer).
 - `mujo-web`: placeholder landing page on `mujo.chat`.
 
 ### 1.3 First infrastructure (`mujo-infra`)
@@ -183,7 +188,7 @@ WP §11.2 step 4. Konzept phase 4 (push part).
 5. Android without Google: persistent connection mode as an alternative.
 6. Retire the upstream ntf-server path (no per-mailbox device tokens anywhere).
 
-### 4.2 UI redesign (designer + Android dev, ~2 months)
+### 4.2 UI redesign (one developer + *external* designer, ~2 months)
 1. Only two contact words: **Invite** and **My link** (§9.1).
 2. First launch (§9.2): name + optional picture → big Invite button → system share sheet or QR.
 3. Plain-language status and errors ("Anna hasn't opened your invitation yet", "Will be delivered when Anna is online").
@@ -262,17 +267,19 @@ Order reflects WP §11.2 step 6 and the Konzept's "Danach". Each item needs its 
 
 | Track | Owner | Key steps |
 |---|---|---|
-| Upstream sync | Core devs | Monthly rebase on upstream tags; maintain `mujo-docs/fork-diff.md`; keep new code in separate modules |
-| Operators | Infra / founders | 2 operators (Ph1) → ≥ 4 (Ph3 staging) → ≥ 6 (release); agreements; directory signing ceremony |
-| Funding | Founders | Decide model by end of Ph1; needed before operator contracts and audit payment |
-| Legal | External counsel | Trademark (Ph0), AGPL/App Store (before iOS), LE request policy and abuse reporting (Ph5), GDPR review of push services |
-| Security process | Core devs | Threat model kept current; fuzzing of parsers; crash-injection tests for read-once; responsible disclosure policy before beta |
-| Measurement | Android dev | Device lab: StrongBox, TEE-only, low-end; data/battery dashboards for Table 5 |
+| Upstream sync | Both devs | Merge upstream tags at least monthly ([upstream-sync.md](upstream-sync.md)); maintain `mujo-docs/fork-diff.md`; keep new code in separate modules |
+| Operators | Both devs | 2 operators (Ph1) → ≥ 4 (Ph3 staging) → ≥ 6 (release); agreements; directory signing ceremony |
+| Funding | Both devs | Decide model by end of Ph1; needed before operator contracts and audit payment |
+| Legal | *External* counsel, per task | Trademark (Ph0), AGPL/App Store (before iOS), LE request policy and abuse reporting (Ph5), GDPR review of push services |
+| Security process | Both devs | Threat model kept current; fuzzing of parsers; crash-injection tests for read-once; responsible disclosure policy before beta |
+| Measurement | Whoever owns S2/S3 | Device lab: StrongBox, TEE-only, low-end; data/battery dashboards for Table 5 |
 | Docs | All | Specs before code; white paper revised (v0.4+) whenever measured numbers replace targets |
 
 ---
 
 ## Milestone summary
+
+Months are WP estimates for 3–4 developers (see the note at the top).
 
 | # | Month | Milestone | Gate |
 |---|---|---|---|
