@@ -41,5 +41,17 @@ Full run, 2026-11-17: **980 examples, 4 failures, 2 pending**, 26 min.
 - Commit: `ad5e9d217` (simplex-chat 7.1.4.0), simplexmq pinned to upstream `fdbcb24d`
 - Toolchain: `nix develop ../mujo-mq` (same GHC 9.6.3 shell)
 - Build: `cabal build --enable-tests --ghc-options=-O0 all`: **OK**
-- Tests: _running_ (`simplex-chat-test --jobs=4 --times`, binary path passed directly; a first attempt through `cabal list-bin` failed with exit 127 while cabal re-synced source repos)
+- Setup: `cp scripts/cabal.project.local.linux cabal.project.local` before building. It sets `direct-sqlcipher +openssl`, as upstream CI does. Without it SQLCipher has no crypto backend and the encryption tests fail.
+- Tests: `simplex-chat-test --jobs=4 --times`, run without the setup step above: 1979 examples, 7 failures, 42 pending, 2 h 54 min
+
+| Failure | Cause | Result after fix |
+|---|---|---|
+| Mobile API: start new chat (2 tests) | No `cabal.project.local`, so no SQLCipher crypto | 25/25 pass |
+| Maintenance mode: encrypt/decrypt database | Same (`no such function: sqlcipher_export`) | 4/4 pass |
+| Broadcast bot | The bot races `forever getLine` on stdin and stops at EOF; a background run has no open stdin | Passes with `< <(sleep 300)` |
+| Badge service e2e: tier change after refused move | Flaky | 14/14 pass on rerun |
+| Remote session: multicast discovery | Multicast blocked by the firewall, as in mujo-mq | Not rerun |
+| Save query plans | Collects plans from queries run earlier in the same process; run alone it writes empty plan files and fails. Still failed in the full run | Open; rerun as part of a full run |
+
+- The query plan test overwrites the tracked `src/Simplex/Chat/Store/SQLite/Migrations/*_query_plans.txt`. Restore them with `git checkout` after a run.
 - Android APK: **deferred**. Needs `nix build .#hydraJobs.x86_64-linux.aarch64-android:lib:simplex-chat` (haskell.nix cross GHC; add `--option extra-substituters https://cache.iog.io` to avoid building GHC from source), an Android SDK and Gradle, plus `git submodule update --init` for `apps/multiplatform/external/nanohttpd/upstream`
