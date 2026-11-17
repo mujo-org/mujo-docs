@@ -11,6 +11,7 @@ Mujo's additions over SimpleX are two-relay replication, separate-circuit 2-hop 
 - `mujo-mq/rfcs/2025-07-15-multi-device.md` proposes multi-device via ratchet state stored on the router. That approach conflicts with Mujo's per-device mailbox design (WP §8.3).
 - SMP already has private routing through a sender-chosen proxy (protocol v8). It's one forwarding hop, not separate circuits per relay.
 - The agent already holds several queues per connection for queue rotation (`primary`, `dbReplaceQueueId` in `Agent/Store.hs`).
+- The team is 2 developers with no hiring planned. Maintaining a Haskell fork alone weighs toward option B or C.
 
 ## Options
 

@@ -2,7 +2,7 @@
 
 Derived from *Mujo: Konzept für einen Messenger ohne Nummer und Username* (Konzept, 17.11.2026) and *Mujo White Paper v0.3* (WP). Where the two disagree, **WP v0.3 wins**: it is the later document and explicitly replaces the Konzept's 6–9 month estimate, Android+Desktop MVP, per-mailbox push tokens, shared entry hop and default-on read receipts. Section references (§) point to the white paper.
 
-Target: **Android MVP in 12–18 months** with 3–4 developers (2 core/Haskell, 1 Android, 0.5 infra) plus a part-time designer.
+Team: **2 developers, no hiring planned**. The WP's 12–18 months for an Android MVP assumes 3–4 developers plus a part-time designer, so expect it to take longer with two. Re-estimate once spike S1 shows how much agent code changes, and keep the MVP scope tight.
 
 ---
 
@@ -39,15 +39,16 @@ The WP conclusion asks for a 2-month prototype before committing. Its purpose is
    - **Replication spike:** client deposits one message on 2 SMP servers and the receiver drops the duplicate. Measure the changes needed in `smp-agent`.
    - **Key-hierarchy spike:** on 3 Android devices (one with StrongBox, one TEE-only, one low-end), time EEK create/wrap/delete. Target: under 300 ms tap-to-display (§7.1).
    - **Cover-traffic spike:** measure the battery and data cost of the Table 5 polling schedule on real devices.
-5. **Team**
-   - Hire or contract at least one experienced Haskell engineer (WP §11: critical-path skill).
+5. **Team skills** (no hiring; WP §11 calls Haskell a critical-path skill)
+   - Both developers build Haskell competence in the existing codebase: each lands one small fix per repo, and S1 is done in pairs where possible.
+   - Keep new protocol code small and well specified, and prefer upstream contributions where SimpleX accepts them (see ADR 0001).
    - Ramp-up plan: each developer lands one small upstream-style fix in each repo.
 6. **Governance and admin**
    - Write the contributor licence policy (AGPL inherited; own code stays open).
    - Draft upstream-sync policy: track upstream tags, rebase cadence (e.g. monthly), fork-diff document.
    - Start the funding decision (donations / foundation / paid extras). It doesn't block development, but it blocks operator recruiting.
 
-**Exit criteria:** fork decision signed off; name cleared or replaced; CI builds both repos; spike numbers documented; Haskell engineer on board.
+**Exit criteria:** fork decision signed off; name cleared or replaced; CI builds both repos; spike numbers documented; both developers have landed a change in each repo.
 
 ---
 

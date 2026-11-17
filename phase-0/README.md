@@ -8,7 +8,7 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 - [ ] Name cleared (EUIPO, DPMA) or replaced: findings in [name-clearance.md](name-clearance.md), sign-off pending
 - [ ] CI builds `mujo-mq` and `mujo-chat` reproducibly
 - [ ] Spike results documented in [spikes/](../spikes/)
-- [ ] Experienced Haskell engineer on board
+- [ ] Both developers have landed a change in each repo
 
 ## Tasks
 
@@ -37,8 +37,7 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 - [ ] [S2 Key hierarchy](../spikes/README.md#s2-hardware-key-hierarchy-timing)
 - [ ] [S3 Cover traffic](../spikes/README.md#s3-cover-traffic-cost)
 
-### 5. Team (owner: founders)
-- [ ] Job post: senior Haskell engineer (SimpleX codebase experience is a plus)
+### 5. Team skills (owner: both; no hiring planned)
 - [ ] Ramp-up: each developer lands one small fix per repo
 
 ### 6. Governance and admin
