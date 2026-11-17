@@ -5,7 +5,7 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 ## Exit criteria
 
 - [ ] Fork-or-upstream decision signed off ([ADR 0001](../decisions/0001-fork-or-upstream.md))
-- [ ] Name cleared (EUIPO, DPMA) or replaced: findings in [name-clearance.md](name-clearance.md), sign-off pending
+- [x] Name cleared (EUIPO, DPMA): findings in [name-clearance.md](name-clearance.md), "MUJO" signed off 2026-11-17 (#3)
 - [ ] CI builds `mujo-mq` and `mujo-chat` reproducibly, including the Android APK
 - [ ] Spike results documented in [spikes/](../spikes/)
 - [ ] Both developers have landed a change in each repo
