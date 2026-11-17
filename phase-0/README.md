@@ -5,7 +5,7 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 ## Exit criteria
 
 - [ ] Fork-or-upstream decision signed off ([ADR 0001](../decisions/0001-fork-or-upstream.md))
-- [ ] Name cleared (EUIPO, DPMA) or replaced
+- [ ] Name cleared (EUIPO, DPMA) or replaced: findings in [name-clearance.md](name-clearance.md), sign-off pending
 - [ ] CI builds `mujo-mq` and `mujo-chat` reproducibly
 - [ ] Spike results documented in [spikes/](../spikes/)
 - [ ] Experienced Haskell engineer on board
@@ -18,10 +18,10 @@ Tracker for Phase 0 of [ROADMAP.md](../ROADMAP.md). Phase 0 ends when every exit
 
 ### 2. Name and domain (owner: founders)
 - [ ] Register `mujo.chat` (Cloudflare, ~35.20 USD/yr as of 2026-11-17)
-- [ ] EUIPO search: "MUJO", classes 9 and 38
-- [ ] DPMA search: "MUJO", classes 9 and 38
-- [ ] Assess known conflicts: US mark (Mujo LLC, class 9), app "MUJO: Simple Bullet Journal"
-- [ ] Shortlist 2 fallback names with free `.chat` or `.app` domains
+- [x] EUIPO search: "MUJO", classes 9 and 38
+- [x] DPMA search: "MUJO", classes 9 and 38
+- [x] Assess known conflicts: US mark (Mujo LLC, class 9), app "MUJO: Simple Bullet Journal"
+- [x] Shortlist 2 fallback names with free `.chat` or `.app` domains (results: [name-clearance.md](name-clearance.md))
 
 ### 3. Build baseline (owner: core devs)
 - [x] `mujo-mq`: Nix dev shell (`flake.nix`, GHC 9.6.3 from nixos-23.11)
